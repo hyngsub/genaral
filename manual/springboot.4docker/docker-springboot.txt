@@ -1,0 +1,20 @@
+ # 创建运行目录
+mkdir -p /home/springboot
+
+#制作镜像  最后面有个"."点！
+
+docker build . -t cargo:v1.0
+
+ #查看 镜像
+docker images
+
+
+#启动容
+ docker run -d -p 8080:8080  --name cargo  cargo:v1.0
+ 
+ # 找到nginx对应的容器id
+docker ps -a
+# 关闭该容器
+docker stop springbootdemo4docker
+# 删除该容器
+docker rm springbootdemo4docker

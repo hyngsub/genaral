@@ -1,0 +1,88 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:5.7
+    restart: always
+    ports:
+      - 3306:3306
+    networks:
+      - front-ms
+    privileged: true
+    container_name: mysql
+    environment:
+      - "MYSQL_ROOT_PASSWORD=b521"
+      - "MYSQL_DATABASE=test"
+      - "TZ=Asia/Shanghai"
+    command:
+      --default-time-zone='+8:00'
+      --default-authentication-plugin=mysql_native_password
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_general_ci
+      --max_connections=1000
+      --innodb_lock_wait_timeout=500
+      --lower-case-table-names=1
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /home/mysql/data:/var/lib/mysql/
+      - /home/mysql/logs:/var/log/mysql
+      - /home/mysql/conf/conf.d:/etc/mysql/conf.d/
+      - /home/mysql/conf/my.cnf:/etc/mysql/my.cnf
+  redis:
+    image: redis:3.2
+    restart: always
+    ports:
+      - 6379:6379
+    networks:
+      - front-ms
+    privileged: true
+    environment:
+      - "TZ=Asia/Shanghai"
+    container_name: redis
+    volumes:
+      - /home/redis/data:/data
+    command: redis-server --requirepass foobared --appendonly yes
+  nginx:
+    image: nginx:1.14.2
+    container_name: nginx
+    privileged: true
+    restart: always
+    ports:
+      - 80:80
+    volumes:
+      - /home/nginx/conf/nginx.conf:/etc/nginx/nginx.conf
+      - /home/nginx/conf/conf.d:/etc/nginx/conf.d/
+      - /home/nginx/logs:/var/log/nginx/
+      - /home/nginx/html/:/usr/share/nginx/html/
+  portainer:
+    image: portainer/portainer:latest
+    container_name: portainer
+    hostname: portainer
+    restart: always
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./portainer-data:/data
+    environment:
+      TZ: Asia/Shanghai
+      LANG: en_US.UTF-8
+    ports:
+      - "9000:9000"
+  cargo:
+    build: ./cargo/
+    container_name: cargo
+    environment:
+      TZ: Asia/Shanghai
+    ports:
+      - "8080:8080"
+    depends_on:
+      - redis
+      - mysql
+    restart: always
+    #networks:
+     # - appnet
+networks:
+  front-ms:
+    driver: bridge
+ 

@@ -1,0 +1,4 @@
+2023/03/14 14:21:22 [error] 7#7: *1 rewrite or internal redirection cycle while internally redirecting to "/index.html", client: 192.168.1.245, server: localhost, request: "GET / HTTP/1.1", host: "192.168.1.10"
+2023/03/14 14:24:13 [error] 7#7: *3 rewrite or internal redirection cycle while internally redirecting to "/index.html", client: 172.19.0.1, server: localhost, request: "GET / HTTP/1.1", host: "172.19.0.2"
+2023/03/14 14:34:08 [error] 7#7: *4 rewrite or internal redirection cycle while internally redirecting to "/index.html", client: 192.168.1.245, server: localhost, request: "GET / HTTP/1.1", host: "192.168.1.10"
+2023/03/14 14:42:56 [error] 7#7: *6 rewrite or internal redirection cycle while internally redirecting to "/index.html", client: 192.168.1.245, server: localhost, request: "GET / HTTP/1.1", host: "192.168.1.10"

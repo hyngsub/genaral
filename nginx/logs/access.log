@@ -1,0 +1,4 @@
+192.168.1.245 - - [14/Mar/2023:14:21:22 +0000] "GET / HTTP/1.1" 500 595 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36" "-"
+172.19.0.1 - - [14/Mar/2023:14:24:13 +0000] "GET / HTTP/1.1" 500 193 "-" "curl/7.29.0" "-"
+192.168.1.245 - - [14/Mar/2023:14:34:08 +0000] "GET / HTTP/1.1" 500 595 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36" "-"
+192.168.1.245 - - [14/Mar/2023:14:42:56 +0000] "GET / HTTP/1.1" 500 595 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36" "-"

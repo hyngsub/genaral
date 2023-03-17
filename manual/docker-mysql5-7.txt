@@ -1,0 +1,38 @@
+拉取mysql镜像
+docker pull mysql:5.7
+
+# 创建挂载目录
+mkdir -p /home/mysql/conf
+mkdir -p /home/mysql/data
+ 
+
+
+#运行容器
+ 
+docker run -d -p 3306:3306    \
+-v /home/mysql/data:/var/lib/mysql  \
+-e MYSQL_ROOT_PASSWORD='b521' \
+--name mysql mysql:5.7 \
+--character-set-server=utf8mb4 \
+--collation-server=utf8mb4_general_ci \
+--lower-case-table-names=1
+
+#进入Mysql容器
+docker exec -it mysql bash
+
+开启远程连接
+mysql -u root -p"root" 
+
+#进行授权
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'root' WITH GRANT OPTION;
+
+#重载授权表
+FLUSH PRIVILEGES;
+
+#退出
+exit;
+
+============其他===============
+#运行容器
+docker run --name mysql -e MYSQL_ROOT_PASSWORD=root -p 3306:3306 -d mysql:5.7  mysql --lower-case-table-names=1  --character-set-server=utf8mb4  --collation-server=utf8mb4_general_ci
+ 
